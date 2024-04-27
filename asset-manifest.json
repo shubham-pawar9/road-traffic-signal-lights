@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/road-traffic-signal-lights/static/css/main.f19e1a28.css",
+    "main.css": "/road-traffic-signal-lights/static/css/main.ef2107f2.css",
     "main.js": "/road-traffic-signal-lights/static/js/main.a6f040db.js",
     "static/js/453.eb733efa.chunk.js": "/road-traffic-signal-lights/static/js/453.eb733efa.chunk.js",
     "static/media/logo.svg": "/road-traffic-signal-lights/static/media/logo.6ce24c58023cc2f8fd88fe9d219db6c6.svg",
     "index.html": "/road-traffic-signal-lights/index.html",
-    "main.f19e1a28.css.map": "/road-traffic-signal-lights/static/css/main.f19e1a28.css.map",
+    "main.ef2107f2.css.map": "/road-traffic-signal-lights/static/css/main.ef2107f2.css.map",
     "main.a6f040db.js.map": "/road-traffic-signal-lights/static/js/main.a6f040db.js.map",
     "453.eb733efa.chunk.js.map": "/road-traffic-signal-lights/static/js/453.eb733efa.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.f19e1a28.css",
+    "static/css/main.ef2107f2.css",
     "static/js/main.a6f040db.js"
   ]
 }
