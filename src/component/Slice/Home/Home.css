@@ -4,6 +4,7 @@
     width: 150px;
     position: relative;
 }
+
 .signal {
     height: 75px;
     width: 30px;
@@ -278,6 +279,123 @@
     }
 }
 
+.light-dark-btn {
+    border: none;
+    padding: 5px 20px;
+    border-radius: 4px;
+    cursor: pointer;
+    position: absolute;
+    top: 10px;
+}
+.dark .street-light {
+    display: flex;
+}
+.street-light {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    height: 100%;
+    width: 100%;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    z-index: 100;
+}
+.street-center {
+    height: 15px;
+    width: 15px;
+    border: 1px solid #878686;
+    position: relative;
+    border-radius: 2px;
+}
+.pole-1 {
+    height: 20px;
+    width: 2px;
+    border: 1px solid #7e7e7e;
+    background: #7e7e7e;
+    position: absolute;
+    top: -22px;
+    left: 6px;
+}
+.pole-2 {
+    height: 20px;
+    width: 2px;
+    border: 1px solid #7e7e7e;
+    background: #7e7e7e;
+    position: absolute;
+    top: -3px;
+    transform: rotate(90deg);
+    right: 25px;
+}
+.pole-3 {
+    height: 20px;
+    width: 2px;
+    border: 1px solid #7e7e7e;
+    background: #7e7e7e;
+    position: absolute;
+    bottom: -22px;
+    left: 6px;
+}
+.pole-4 {
+    height: 20px;
+    width: 2px;
+    border: 1px solid #7e7e7e;
+    background: #7e7e7e;
+    position: absolute;
+    top: -3px;
+    transform: rotate(90deg);
+    left: 25px;
+}
+.street-center .light {
+    box-shadow: 0 0 30px 4px white;
+    height: 20px;
+    width: 20px;
+    background: #000000;
+    border-radius: 100%;
+    position: absolute;
+    border: none;
+}
+.light1 {
+    top: -10px;
+    left: -10px;
+}
+.light2 {
+    top: 9px;
+    left: -9px;
+}
+.light3 {
+    top: 10px;
+    left: -9px;
+}
+.light4 {
+    top: -10px;
+    left: -9px;
+}
+.dark {
+    background-color: #000000;
+
+}
+.dark .roadSide {
+    border: 1px solid #969696;
+}
+.dark .signal {
+    border: 1px solid #969696;
+}
+.dark .signal::after{
+    background-color: #3d3d3d;
+}
+.dark .roadSide .go {
+    border-right-color: #9696968f;
+}
+.dark .roadSide.left, .roadSide.right, .roadSide.top, .roadSide.bottom {
+    border-top: none;
+}
+.dark .direction-arrow {
+    opacity: 0.9;
+}
+
+
 @media screen and (max-width: 700px) and (min-width:430px) and (orientation: portrait) {
     .roadSide.left {
         left: -38px;
@@ -299,6 +417,9 @@
     .main-parent-div {
         width: 370px;
     }
+    .light-dark-btn {
+        top: 30px;
+    }
 }
 @media screen and (max-width: 370px) and (orientation: portrait) {
     .roadSide.left {
@@ -309,6 +430,9 @@
     }
     .main-parent-div {
         width: 350px;
+    }
+    .light-dark-btn {
+        top: 30px;
     }
 }
 @media screen and (max-width: 700px) and (orientation: landscape) {

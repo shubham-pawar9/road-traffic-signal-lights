@@ -9,6 +9,7 @@ const Home = () => {
   const signalData = useSelector((state) => state.signal.signalData);
   const dispatch = useDispatch();
   const [activeIndex, setActiveIndex] = useState(0);
+  const [darkMode, setDarkMode] = useState(false);
   const sides = ["right", "bottom", "left", "top"];
   const oppositeSides = ["left", "top", "right", "bottom"];
   const carCollection = ["car1", "car2", "car3", "car4", "car5", "car6"];
@@ -86,8 +87,31 @@ const Home = () => {
   }, [carCollection]);
   return (
     <>
-      <div className="main-parent-div">
+      <button
+        className="light-dark-btn"
+        style={{ backgroundColor: darkMode ? "red" : "green" }}
+        onClick={() => setDarkMode(!darkMode)}
+      >
+        {darkMode ? "Light Mode" : "Dark Mode"}
+      </button>
+      <div className={`main-parent-div ${darkMode ? "dark" : ""}`}>
         <div className="main-signal-div">
+          <div className="street-light">
+            <div className="street-center">
+              <div className="pole-1">
+                <div className="light light1"></div>
+              </div>
+              <div className="pole-2">
+                <div className="light light2"></div>
+              </div>
+              <div className="pole-3">
+                <div className="light light3"></div>
+              </div>
+              <div className="pole-4">
+                <div className="light light4"></div>
+              </div>
+            </div>
+          </div>
           {signalData.map((item, index) => (
             <div className={`signal ${item.signalPosition}`} key={item.id}>
               <div className={`signalCount text_${item.value}`}>
