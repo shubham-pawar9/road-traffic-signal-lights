@@ -1,0 +1,300 @@
+.main-signal-div {
+    display: flex;
+    height: 150px;
+    width: 150px;
+    position: relative;
+}
+.signal {
+    height: 75px;
+    width: 30px;
+    border-radius: 4px;
+    background: black;
+    display: flex;
+    justify-content: space-evenly;
+    flex-direction: column;
+    align-items: center;
+}
+.signal::after {
+    content: "";
+    position: absolute;
+    top: 75px;
+    height: 15px;
+    width: 4px;
+    background-color: black;
+}
+.signal.right {
+    position: absolute;
+    bottom: -33px;
+    left: -43px;
+    transform: rotate(270deg);
+}
+.signal.top {
+    position: absolute;
+    right: -12px;
+    bottom: -65px;
+    transform: rotate(180deg);
+}
+.signal.bottom {
+    position: absolute;
+    top: -65px;
+    left: -12px;
+}
+.signal.left {
+    position: absolute;
+    right: -43px;
+    top: -33px;
+    transform: rotate(90deg);
+}
+.light {
+    height: 12px;
+    width: 12px;
+    border-radius: 100%;
+    border: 1px solid #ffffff82;
+}
+.red {
+    background-color: red;
+    box-shadow: 0px 0px 12px 2px red;
+}
+.green {
+    background-color: green;
+    box-shadow: 0px 0px 12px 2px green;
+}
+.yellow {
+    background-color: yellow;
+    box-shadow: 0px 0px 12px 2px yellow;
+}
+.signalCount {
+    padding: 2px;
+    font-size: 9px;
+    border-radius: 4px;
+    width: 20px;
+    font-weight: 600;
+}
+.text_red {
+    color: red;
+    box-shadow: 0px 0px 5px 1px #ff0000ba;
+}
+.text_green {
+    color: #00e900;
+    box-shadow: 0px 0px 5px 1px #039803;
+}
+.text_yellow {
+    color: yellow;
+    box-shadow: 0px 0px 5px 1px #ffff00c2;
+}
+.main-parent-div {
+    border: 1px solid black;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    width: 700px;
+    height: 504px;
+    box-sizing: content-box;
+    overflow: hidden;
+}
+.roadSide {
+    height: 200px;
+    width: 100px;
+    border: 1px solid black;
+    display: flex;
+    flex-direction: row;
+}
+.roadSide.top {
+    position: absolute;
+    top: 2px;
+    border-top: none;
+    transform: rotate(180deg);
+}
+.roadSide.right {
+    position: absolute;
+    right: 100px;
+    transform: rotate(270deg);
+    height: 300px;
+    border-top: none;
+}
+.roadSide.left {
+    position: absolute;
+    left: 100px;
+    height: 300px;
+    transform: rotate(90deg);
+    border-top: none;
+}
+.roadSide.bottom {
+    position: absolute;
+    bottom: 0;
+    border-top: none;
+}
+.roadSide .go {
+    width: calc(100% / 2);
+    height: 100%;
+    border: none;
+    border-right-style: dashed;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.roadSide .come {
+    width: calc(100% / 2);
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+}
+.direction-arrow {
+    height: 50px;
+    width: 28px;
+    z-index: 0;
+}
+.roadSide .go .direction-arrow {
+    transform: rotate(180deg);
+}
+.car-show {
+    height: 40px;
+    position: absolute;
+    z-index: 1;
+}
+
+.car-show.car1.running {
+    /* animation: main 1s linear infinite forwards; */
+    animation-name: running1;
+    animation-timing-function: ease-in-out;
+    animation-direction:normal;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-duration: 4s;
+    animation-delay: 1s;
+}
+@keyframes running1 {
+    0% {
+        top: 0px; /* Start from original position */
+    }
+    100% {
+        top: -470px; /* Move down halfway through the animation */
+    }
+}
+.car-show.car2.running {
+    /* animation: main 1s linear infinite forwards; */
+    animation-name: running2;
+    animation-timing-function: ease-in-out;
+    animation-direction: normal;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-duration: 6s;
+    animation-delay: 1s;
+}
+
+
+@keyframes running2 {
+    0% {
+        top: 60px; /* Start from original position */
+    }
+    100% {
+        top: -470px; /* Move down halfway through the animation */
+    }
+}
+.car-show.car3.running {
+    /* animation: main 1s linear infinite forwards; */
+    animation-name: running3;
+    animation-timing-function: ease-in-out;
+    animation-direction: normal;
+    animation-iteration-count: 1;
+    animation-fill-mode: both;
+    animation-duration: 7s;
+    animation-delay: 1s;
+}
+
+
+@keyframes running3 {
+    0% {
+        top: 120px; /* Start from original position */
+    }
+    100% {
+        top: -470px; /* Move down halfway through the animation */
+    }
+}
+.car-show.car4.running {
+    /* animation: main 1s linear infinite forwards; */
+    animation-name: running4;
+    animation-timing-function: ease-in-out;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+    animation-duration: 12s;
+    animation-delay: 6s;
+}
+
+
+@keyframes running4 {
+    0% {
+        top: 300px; /* Start from original position */
+    }
+    100% {
+        top: -470px; /* Move down halfway through the animation */
+    }
+}
+.car-show.car5.running {
+    /* animation: main 1s linear infinite forwards; */
+    animation-name: running5;
+    animation-timing-function: ease-in-out;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+    animation-duration: 14s;
+    animation-delay: 8s;
+}
+
+
+@keyframes running5 {
+    0% {
+        top: 360px; /* Start from original position */
+    }
+    100% {
+        top: -470px; /* Move down halfway through the animation */
+    }
+}
+.car-show.car6.running {
+    /* animation: main 1s linear infinite forwards; */
+    animation-name: running6;
+    animation-timing-function: ease-in-out;
+    animation-direction: normal;
+    animation-iteration-count: infinite;
+    animation-fill-mode: both;
+    animation-duration: 17s;
+    animation-delay: 11s;
+}
+
+
+@keyframes running6 {
+    0% {
+        top: 420px; /* Start from original position */
+    }
+    100% {
+        top: -470px; /* Move down halfway through the animation */
+    }
+}
+
+@media screen and (max-width: 700px) and (min-width:430px) and (orientation: portrait) {
+    .roadSide.left {
+        left: -38px;
+    }
+    .roadSide.right {
+        right: -38px;
+    }
+    .main-parent-div {
+        width: 430px;
+    }
+}
+@media screen and (max-width: 430px) and (orientation: portrait) {
+    .roadSide.left {
+        left: -66px;
+    }
+    .roadSide.right {
+        right: -66px;
+    }
+    .main-parent-div {
+        width: 370px;
+    }
+}
