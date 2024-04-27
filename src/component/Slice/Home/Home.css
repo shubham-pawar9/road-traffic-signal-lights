@@ -93,6 +93,7 @@
     height: 504px;
     box-sizing: content-box;
     overflow: hidden;
+    background: #ffffff;
 }
 .roadSide {
     height: 200px;
@@ -308,5 +309,16 @@
     }
     .main-parent-div {
         width: 350px;
+    }
+}
+@media screen and (max-width: 700px) and (orientation: landscape) {
+    .roadSide.left {
+        left: 50px;
+    }
+    .roadSide.right {
+        right: 50px;
+    }
+    .main-parent-div {
+        width: 600px;
     }
 }
