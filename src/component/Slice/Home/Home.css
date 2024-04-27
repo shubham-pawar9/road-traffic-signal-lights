@@ -103,7 +103,7 @@
 }
 .roadSide.top {
     position: absolute;
-    top: 2px;
+    top: 0px;
     border-top: none;
     transform: rotate(180deg);
 }
@@ -288,7 +288,7 @@
         width: 430px;
     }
 }
-@media screen and (max-width: 430px) and (orientation: portrait) {
+@media screen and (max-width: 430px) and (min-width:370px) and (orientation: portrait) {
     .roadSide.left {
         left: -66px;
     }
@@ -297,5 +297,16 @@
     }
     .main-parent-div {
         width: 370px;
+    }
+}
+@media screen and (max-width: 370px) and (orientation: portrait) {
+    .roadSide.left {
+        left: -76px;
+    }
+    .roadSide.right {
+        right: -76px;
+    }
+    .main-parent-div {
+        width: 350px;
     }
 }
