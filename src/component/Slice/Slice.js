@@ -34,23 +34,23 @@ const initialState = {
   carsData: [
     {
       id: "right",
-      cars: ["car1", "car2", "car3", "car4"],
-      position: ["0px", "120px", "220px", "380px"],
+      cars: ["car1", "car2", "car3", "truck1"],
+      position: ["0px", "120px", "220px", "550px"],
     },
     {
       id: "bottom",
-      cars: ["car1", "car2", "car3"],
-      position: ["240px", "300px", "360px"],
+      cars: ["car1", "car2", "car3", "truck2"],
+      position: ["800px", "980px", "1820px", "3090px"],
     },
     {
       id: "left",
-      cars: ["car1", "car2", "car3"],
-      position: ["240px", "360px", "480px"],
+      cars: ["car1", "car2", "car3", "truck3"],
+      position: ["1000px", "1420px", "2000px", "3800px"],
     },
     {
       id: "top",
-      cars: ["car1", "car2", "car3"],
-      position: ["420px", "480px", "540px"],
+      cars: ["car1", "car2", "car3", "truck1"],
+      position: ["1200px", "1900px", "2890px", "5200px"],
     },
   ],
 };

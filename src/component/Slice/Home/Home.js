@@ -77,16 +77,6 @@ const Home = () => {
 
     return () => clearInterval(interval);
   }, [countdown]);
-  const carRefs = useRef([]);
-  const handleCarsRunning = (id, cars, position) => {
-    dispatch(
-      carsStatus({
-        id: id,
-        cars: cars,
-        position: position,
-      })
-    );
-  };
   const updateCarPositions = () => {
     const updatedCarsData = carsData.map((sideData, index) => {
       if (
@@ -117,7 +107,7 @@ const Home = () => {
           ...sideData,
           position: sideData.position.map((pos, index) => {
             let newPos = parseInt(pos) - 10; // Decrease by 1 pixel for smoother movement
-            if (newPos < -150) {
+            if (newPos < -10) {
               if (newPos < -500) {
                 newPos = 500;
               } else {
@@ -171,7 +161,7 @@ const Home = () => {
           {signalData.map((item, index) => (
             <div className={`signal ${item.signalPosition}`} key={item.id}>
               <div className={`signalCount text_${item.value}`}>
-                {countdown[index]}
+                {Math.abs(countdown[index])}
               </div>
               <div
                 className={`light ${item.value === "red" ? "red" : ""}`}
@@ -204,7 +194,7 @@ const Home = () => {
               {sideData.cars.map((car, index) => (
                 <img
                   key={car}
-                  className={`car-show ${
+                  className={`car-show ${car} ${
                     sideData.id === sides[activeIndex] ? "running" : ""
                   } ${sideData.position[index] === "500px" ? "hide" : ""}`}
                   style={{ top: `${sideData.position[index]}` }}

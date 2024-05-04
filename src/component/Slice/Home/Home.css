@@ -155,7 +155,7 @@
     transform: rotate(180deg);
 }
 .car-show {
-    height: 40px;
+    height: 60px;
     position: absolute;
     z-index: 1;
     transition: 0.2s linear top;
@@ -173,6 +173,12 @@
 }
 .car-show.hide {
 opacity: 0;
+}
+.car-show.truck1, .truck3 {
+    height: 95px;
+}
+.car-show.truck2 {
+    height: 105px;
 }
 /* @keyframes running1 {
     0% {
