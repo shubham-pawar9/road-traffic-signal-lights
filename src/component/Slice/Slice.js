@@ -31,6 +31,28 @@ const initialState = {
       oppositeValue: "green",
     },
   ],
+  carsData: [
+    {
+      id: "right",
+      cars: ["car1", "car2", "car3", "car4"],
+      position: ["0px", "120px", "220px", "380px"],
+    },
+    {
+      id: "bottom",
+      cars: ["car1", "car2", "car3"],
+      position: ["240px", "300px", "360px"],
+    },
+    {
+      id: "left",
+      cars: ["car1", "car2", "car3"],
+      position: ["240px", "360px", "480px"],
+    },
+    {
+      id: "top",
+      cars: ["car1", "car2", "car3"],
+      position: ["420px", "480px", "540px"],
+    },
+  ],
 };
 const signalSlice = createSlice({
   name: "signal",
@@ -56,7 +78,16 @@ const signalSlice = createSlice({
         }
       });
     },
+    carsStatus: (state, action) => {
+      const { othersData } = action.payload;
+      state.carsData = othersData;
+      // state.carsData.forEach((item, i) => {
+      //   if (item.id == id) {
+      //     item.position = position;
+      //   }
+      // });
+    },
   },
 });
-export const { checkSignalStatus } = signalSlice.actions;
+export const { checkSignalStatus, carsStatus } = signalSlice.actions;
 export default signalSlice.reducer;

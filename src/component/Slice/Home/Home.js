@@ -1,20 +1,19 @@
 import { useDispatch, useSelector } from "react-redux";
 import "./Home.css";
-import { checkSignalStatus } from "../Slice";
+import { checkSignalStatus, carsStatus } from "../Slice";
 import { useEffect, useRef, useState } from "react";
 
 const Home = () => {
   const [currentSideIndex, setCurrentSideIndex] = useState(0);
   const [countdown, setCountdown] = useState([30, 65, 100, 135]); // Initial countdown values for each signal
   const signalData = useSelector((state) => state.signal.signalData);
+  const carsData = useSelector((state) => state.signal.carsData);
   const dispatch = useDispatch();
   const [activeIndex, setActiveIndex] = useState(0);
   const [darkMode, setDarkMode] = useState(false);
   const sides = ["right", "bottom", "left", "top"];
   const oppositeSides = ["left", "top", "right", "bottom"];
-  const carCollection = ["car1", "car2", "car3", "car4", "car5", "car6"];
-  const carsPosition = [0, 60, 120, 300, 360, 420];
-  // console.log(oppositeSides[activeIndex]);
+  const carsPosition = [0, 60, 120, 180];
   const handleSignalStart = (side, color, oppositeSide) => {
     dispatch(
       checkSignalStatus({
@@ -79,12 +78,69 @@ const Home = () => {
     return () => clearInterval(interval);
   }, [countdown]);
   const carRefs = useRef([]);
+  const handleCarsRunning = (id, cars, position) => {
+    dispatch(
+      carsStatus({
+        id: id,
+        cars: cars,
+        position: position,
+      })
+    );
+  };
+  const updateCarPositions = () => {
+    const updatedCarsData = carsData.map((sideData, index) => {
+      if (
+        signalData[index].value === "green" ||
+        signalData[index].value === "yellow"
+      ) {
+        // Update positions for green and yellow signals
+        return {
+          ...sideData,
+          position: sideData.position.map((pos) => {
+            let newPos = parseInt(pos) - 10;
+            if (newPos < -500) {
+              newPos = 500;
+            } else if (newPos > -150) {
+              return `${newPos}px`;
+            }
+            return `${newPos}px`;
+          }),
+        };
+      }
+      return sideData; // Return unchanged data if not green/yellow
+    });
 
-  // Inside the component
+    // Reset positions to original for red signals
+    const resetCarsData = updatedCarsData.map((sideData, index) => {
+      if (signalData[index].value === "red") {
+        return {
+          ...sideData,
+          position: sideData.position.map((pos, index) => {
+            let newPos = parseInt(pos) - 10; // Decrease by 1 pixel for smoother movement
+            if (newPos < -150) {
+              if (newPos < -500) {
+                newPos = 500;
+              } else {
+                return `${newPos}px`;
+              }
+            } else if (newPos < carsPosition[index]) {
+              newPos = carsPosition[index];
+            }
+            return `${newPos}px`;
+          }),
+        };
+      }
+      return sideData; // Return unchanged data if not red
+    });
+
+    // Dispatch the updated carsData for all sides
+    dispatch(carsStatus({ othersData: resetCarsData }));
+  };
+
   useEffect(() => {
-    carRefs.current = carRefs.current.slice(0, carCollection.length);
-    console.log(carRefs.current[0].style.top);
-  }, [carCollection]);
+    const interval = setInterval(updateCarPositions, 200);
+    return () => clearInterval(interval);
+  }, [carsData, activeIndex]);
   return (
     <>
       <button
@@ -130,53 +186,52 @@ const Home = () => {
           ))}
         </div>
 
-        {signalData &&
-          signalData.map((item) => {
-            return (
-              <div className={`roadSide ${item.signalPosition}`}>
-                <div className="go">
-                  <img
-                    className={`direction-arrow ${
-                      item.signalPosition === sides[activeIndex] ? "main" : ""
-                    }`}
-                    src={`./img/${item.value}-arrow.png`}
-                    alt="arrow"
-                  />
-                  {carCollection &&
-                    carCollection.map((imgItem, index) => {
-                      return (
-                        <img
-                          ref={(element) => (carRefs.current[index] = element)}
-                          className={`car-show ${imgItem} ${
-                            item.signalPosition === sides[activeIndex]
-                              ? "running"
-                              : ""
-                          }`}
-                          style={{ top: `${carsPosition[index]}px` }}
-                          src={`./img/${imgItem}.png`}
-                          alt="car-img"
-                        />
-                      );
-                    })}
-                </div>
-                <div className="come">
-                  <img
-                    className={`direction-arrow ${
-                      item.signalPosition === oppositeSides[activeIndex]
-                        ? "opposite"
-                        : ""
-                    }`}
-                    src={`./img/${
-                      item.signalPosition === oppositeSides[activeIndex]
-                        ? `${item.oppositeValue}-arrow.png`
-                        : "red-arrow.png"
-                    }`}
-                    alt="arrow"
-                  />
-                </div>
-              </div>
-            );
-          })}
+        {carsData.map((sideData, index) => (
+          <div key={sideData.id} className={`roadSide ${sideData.id}`}>
+            <div className="go">
+              <img
+                className={`direction-arrow ${
+                  signalData[index].signalPosition === sides[activeIndex]
+                    ? "main"
+                    : ""
+                }`}
+                src={
+                  process.env.PUBLIC_URL +
+                  `/img/${signalData[index].value}-arrow.png`
+                }
+                alt="arrow"
+              />
+              {sideData.cars.map((car, index) => (
+                <img
+                  key={car}
+                  className={`car-show ${
+                    sideData.id === sides[activeIndex] ? "running" : ""
+                  } ${sideData.position[index] === "500px" ? "hide" : ""}`}
+                  style={{ top: `${sideData.position[index]}` }}
+                  src={process.env.PUBLIC_URL + `/img/${car}.png`}
+                  alt="car-img"
+                />
+              ))}
+            </div>
+            <div className="come">
+              {/* Render opposite direction arrow */}
+              <img
+                className={`direction-arrow ${
+                  sideData.id === oppositeSides[activeIndex] ? "opposite" : ""
+                }`}
+                src={
+                  process.env.PUBLIC_URL +
+                  `/img/${
+                    sideData.id === oppositeSides[activeIndex]
+                      ? `${signalData[index].oppositeValue}-arrow.png`
+                      : "red-arrow.png"
+                  }`
+                }
+                alt="arrow"
+              />
+            </div>
+          </div>
+        ))}
       </div>
     </>
   );
